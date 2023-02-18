@@ -10,4 +10,4 @@ timm
 transformers==4.15.0
 open_clip_torch
 requests
-clip-interrogator==0.4.3
+clip-interrogator==0.5.0

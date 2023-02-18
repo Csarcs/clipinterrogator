@@ -1,33 +1,12 @@
 #!/usr/bin/env python3
 import gradio as gr
-import os
 from clip_interrogator import Config, Interrogator
-from huggingface_hub import hf_hub_download
 from share_btn import community_icon_html, loading_icon_html, share_js
 
 MODELS = ['ViT-L (best for Stable Diffusion 1.*)', 'ViT-H (best for Stable Diffusion 2.*)']
 
-# download preprocessed files
-PREPROCESS_FILES = [
-    'ViT-H-14_laion2b_s32b_b79k_artists.pkl',
-    'ViT-H-14_laion2b_s32b_b79k_flavors.pkl',
-    'ViT-H-14_laion2b_s32b_b79k_mediums.pkl',
-    'ViT-H-14_laion2b_s32b_b79k_movements.pkl',
-    'ViT-H-14_laion2b_s32b_b79k_trendings.pkl',
-    'ViT-L-14_openai_artists.pkl',
-    'ViT-L-14_openai_flavors.pkl',
-    'ViT-L-14_openai_mediums.pkl',
-    'ViT-L-14_openai_movements.pkl',
-    'ViT-L-14_openai_trendings.pkl',
-]
-print("Download preprocessed cache files...")
-for file in PREPROCESS_FILES:
-    path = hf_hub_download(repo_id="pharma/ci-preprocess", filename=file, cache_dir="cache")
-    cache_path = os.path.dirname(path)
-
-
 # load BLIP and ViT-L https://huggingface.co/openai/clip-vit-large-patch14
-config = Config(cache_path=cache_path, clip_model_path="cache", clip_model_name="ViT-L-14/openai")
+config = Config(clip_model_name="ViT-L-14/openai")
 ci_vitl = Interrogator(config)
 ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
 
