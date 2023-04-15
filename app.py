@@ -3,30 +3,31 @@ import gradio as gr
 from clip_interrogator import Config, Interrogator
 from share_btn import community_icon_html, loading_icon_html, share_js
 
-MODELS = ['ViT-L (best for Stable Diffusion 1.*)', 'ViT-H (best for Stable Diffusion 2.*)']
+MODELS = ['ViT-L (best for Stable Diffusion 1.*)']#, 'ViT-H (best for Stable Diffusion 2.*)']
 
 # load BLIP and ViT-L https://huggingface.co/openai/clip-vit-large-patch14
 config = Config(clip_model_name="ViT-L-14/openai")
 ci_vitl = Interrogator(config)
-ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
+# ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
 
 # load ViT-H https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K
-config.blip_model = ci_vitl.blip_model
-config.clip_model_name = "ViT-H-14/laion2b_s32b_b79k"
-ci_vith = Interrogator(config)
-ci_vith.clip_model = ci_vith.clip_model.to("cpu")
+# config.blip_model = ci_vitl.blip_model
+# config.clip_model_name = "ViT-H-14/laion2b_s32b_b79k"
+# ci_vith = Interrogator(config)
+# ci_vith.clip_model = ci_vith.clip_model.to("cpu")
 
 
 def image_analysis(image, clip_model_name):
     # move selected model to GPU and other model to CPU
-    if clip_model_name == MODELS[0]:
-        ci_vith.clip_model = ci_vith.clip_model.to("cpu")
-        ci_vitl.clip_model = ci_vitl.clip_model.to(ci_vitl.device)
-        ci = ci_vitl
-    else:
-        ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
-        ci_vith.clip_model = ci_vith.clip_model.to(ci_vith.device)
-        ci = ci_vith
+    # if clip_model_name == MODELS[0]:
+    #     ci_vith.clip_model = ci_vith.clip_model.to("cpu")
+    #     ci_vitl.clip_model = ci_vitl.clip_model.to(ci_vitl.device)
+    #     ci = ci_vitl
+    # else:
+    #     ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
+    #     ci_vith.clip_model = ci_vith.clip_model.to(ci_vith.device)
+    #     ci = ci_vith
+    ci = ci_vitl
 
     image = image.convert('RGB')
     image_features = ci.image_to_features(image)
@@ -48,14 +49,15 @@ def image_analysis(image, clip_model_name):
 
 def image_to_prompt(image, clip_model_name, mode):
     # move selected model to GPU and other model to CPU
-    if clip_model_name == MODELS[0]:
-        ci_vith.clip_model = ci_vith.clip_model.to("cpu")
-        ci_vitl.clip_model = ci_vitl.clip_model.to(ci_vitl.device)
-        ci = ci_vitl
-    else:
-        ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
-        ci_vith.clip_model = ci_vith.clip_model.to(ci_vith.device)
-        ci = ci_vith
+    # if clip_model_name == MODELS[0]:
+    #     ci_vith.clip_model = ci_vith.clip_model.to("cpu")
+    #     ci_vitl.clip_model = ci_vitl.clip_model.to(ci_vitl.device)
+    #     ci = ci_vitl
+    # else:
+    #     ci_vitl.clip_model = ci_vitl.clip_model.to("cpu")
+    #     ci_vith.clip_model = ci_vith.clip_model.to(ci_vith.device)
+    #     ci = ci_vith
+    ci = ci_vitl
 
     ci.config.blip_num_beams = 64
     ci.config.chunk_size = 2048
