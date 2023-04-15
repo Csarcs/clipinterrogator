@@ -8,6 +8,6 @@ huggingface-hub
 Pillow
 timm
 transformers==4.15.0
-open_clip_torch
+open_clip_torch==2.14.0
 requests
-clip-interrogator==0.5.0
+clip-interrogator==0.5.4
