@@ -2,6 +2,7 @@
 torch==1.12.1
 #torchvision
 
+tokenizers==0.10.3
 transformers==4.15.0
 fairscale==0.4.4
 
