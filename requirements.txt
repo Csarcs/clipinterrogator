@@ -10,4 +10,5 @@ timm
 transformers==4.15.0
 open_clip_torch==2.14.0
 requests
+blip-ci==0.0.4
 clip-interrogator==0.5.4
