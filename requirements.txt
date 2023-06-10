@@ -1,16 +1,13 @@
 --extra-index-url https://download.pytorch.org/whl/cu117
-torch==1.12.1
-#torchvision
+torch
+torchvision
 
-tokenizers==0.10.3
-transformers==4.15.0
-fairscale==0.4.4
-
+fairscale
 ftfy
-huggingface-hub==0.4.0
+huggingface-hub
 Pillow
-timm==0.4.12
+timm
+transformers==4.15.0
 open_clip_torch==2.14.0
 requests
-blip-ci==0.0.4
 clip-interrogator==0.5.4
