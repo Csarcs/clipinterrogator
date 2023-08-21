@@ -72,7 +72,7 @@ ${outputTxt}`;
     });
 
 	const paramsStr = params.toString();
-	window.open(`https://huggingface.co/spaces/pharma/CLIP-Interrogator/discussions/new?${paramsStr}`, '_blank');
+	window.open(`https://huggingface.co/spaces/pharmapsychotic/CLIP-Interrogator/discussions/new?${paramsStr}`, '_blank');
 
     shareBtnEl.style.removeProperty('pointer-events');
     shareIconEl.style.removeProperty('display');
